@@ -1,6 +1,6 @@
 # README
 
-E-commerce template for an alien widget factory.
+E-commerce template for an alien widget factory called `e-commerce`.
 
 ## Pages
 
@@ -28,7 +28,9 @@ E-commerce template for an alien widget factory.
 | Database | SQLite |
 | Authentication | JWT |
 | Container | Docker |
-| Hosting | Google Cloud Run |
+| Hosting | DigitalOcean Droplet |
+| Reverse Proxy | Nginx |
+| SSL | Let's Encrypt |
 
 ## User Flows
 
@@ -65,7 +67,7 @@ E-commerce template for an alien widget factory.
 
 - [Go](https://golang.org/dl/)
 - [Docker](https://www.docker.com/products/docker-desktop)
-- [Google Cloud SDK](https://cloud.google.com/sdk/docs/install)
+- [DigitalOcean](https://www.digitalocean.com/)
 
 ### Setup
 
@@ -77,10 +79,10 @@ git clone
 cd
 
 # Build the container
-docker build -t alien-widget-factory .
+docker build -t e-commerce .
 
 # Run the container
-docker run -p 8080:8080 alien-widget-factory
+docker run -p 8080:8080 e-commerce
 ```
 
 ### Development
@@ -96,16 +98,16 @@ go run main.go
 ## Deployment
 
 ```sh
-# Change into the directory
-cd
+# Build the container for deployment to DigitalOcean droplet
+docker build -t e-commerce .
 
-# Build the container
-docker build -t gcr.io/alien-widget-factory/alien-widget-factory .
+# SCP the container to the DigitalOcean droplet
+scp e-commerce root@<ip>:/root
 
-# Push the container to Google Cloud Registry
-docker push gcr.io/alien-widget-factory/alien-widget-factory
+# SSH into the DigitalOcean droplet
+ssh root@<ip>
 
-# Deploy the container to Google Cloud Run
-gcloud run deploy alien-widget-factory --image gcr.io/alien-widget-factory/alien-widget-factory --platform managed
+# Run the container
+docker run -p 8080:8080 e-commerce
 ```
 
