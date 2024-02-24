@@ -1,6 +1,6 @@
 # README
 
-E-commerce template for an alien widget factory called `e-commerce`.
+bytethebug template for an alien widget factory called `bytethebug`.
 
 ## Pages
 
@@ -79,10 +79,10 @@ git clone
 cd
 
 # Build the container
-docker build -t e-commerce .
+docker build -t bytethebug .
 
 # Run the container
-docker run -p 8080:8080 e-commerce
+docker run -p 8080:8080 bytethebug
 ```
 
 ### Development
@@ -99,15 +99,15 @@ go run main.go
 
 ```sh
 # Build the container for deployment to DigitalOcean droplet
-docker build -t e-commerce .
+docker build -t bytethebug .
 
 # SCP the container to the DigitalOcean droplet
-scp e-commerce root@<ip>:/root
+scp bytethebug root@<ip>:/root
 
 # SSH into the DigitalOcean droplet
 ssh root@<ip>
 
 # Run the container
-docker run -p 8080:8080 e-commerce
+docker run -p 8080:8080 bytethebug
 ```
 

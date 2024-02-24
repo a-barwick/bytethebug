@@ -1,4 +1,4 @@
-module e-commerce
+module bytethebug
 
 go 1.21.1
 

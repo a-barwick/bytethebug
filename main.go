@@ -1,8 +1,8 @@
 package main
 
 import (
-	"e-commerce/models"
-	"e-commerce/templates"
+	"bytethebug/models"
+	"bytethebug/templates"
 	"log"
 	"net/http"
 
