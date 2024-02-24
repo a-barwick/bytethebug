@@ -1,0 +1,11 @@
+package templates
+
+import "bytethebug/models"
+
+templ ItemList(data []models.Todo) {
+    <ul id="list">
+        for _, item := range data {
+            @ItemRow(item)
+        }
+    </ul>
+}
