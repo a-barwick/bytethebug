@@ -1,0 +1,16 @@
+package templates
+
+import "e-commerce/models"
+
+templ ItemRow(item models.Todo) {
+	<li>
+        <input 
+            type="checkbox" 
+            name="todo1" 
+            id="todo1"
+            if item.IsChecked {
+                checked
+            } />
+        <label for="todo1">{ item.Body }</label>
+    </li>
+}
