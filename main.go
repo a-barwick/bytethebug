@@ -1,15 +1,20 @@
 package main
 
 import (
-	"bytethebug/models"
-	"bytethebug/templates"
+	"bytethebug/internal/models"
+	"bytethebug/internal/provider"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/a-h/templ"
 )
 
-func createTestData() []models.Todo {
+const (
+	testdata = "testdata"
+)
+
+func seedTestData() []models.Todo {
 	return []models.Todo{
 		{
 			Id:        "1",
@@ -42,18 +47,25 @@ func createItemHandler(data []models.Todo) http.HandlerFunc {
 				UpdatedAt: "2021-01-01T00:00:00Z",
 			})
 		}
-		templates.ItemList(data).Render(r.Context(), w)
+		provider.WriteHtmlResponse(provider.BuildTodoList(data), r.Context(), w)
 	}
 }
 
+func parseArgs() string {
+	args := os.Args[1:]
+	for _, arg := range args {
+		if arg == "--testdata" || arg == "-t" {
+			return testdata
+		}
+	}
+	return ""
+}
+
 func main() {
-	data := createTestData()
+	homePage := provider.BuildHomePage()
 
-	todoPage := templates.TodoComponent(data)
-	base := templates.BasePage(todoPage)
+	http.Handle("/", templ.Handler(homePage))
 
-	http.Handle("/", templ.Handler(base))
-	http.HandleFunc("/create", createItemHandler(data))
-
+	log.Println("Listening on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

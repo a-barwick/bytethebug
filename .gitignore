@@ -34,3 +34,11 @@ Thumbs.db
 
 # Private docs
 /docs/private/
+
+# Temporary files
+tmp/
+*.tmp
+
+# Database
+*.db
+*.sqlite
