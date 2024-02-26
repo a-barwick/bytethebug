@@ -23,7 +23,29 @@ func Home() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h2>Welcome to ByteTheBug!</h2><p>ByteTheBug is a platform for developers, security afficionados, and anyone interested in learning about web app security. Start by solving a couple buzzles, then check out the community submissions to solve some real world bugs.</p></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div><h2>Welcome to ByteTheBug!</h2><p>ByteTheBug is a platform for developers, security afficionados, and anyone interested in learning about web app security. Start by solving a couple buzzles, then check out the community submissions to solve some real world bugs.</p><pre><code>")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		var templ_7745c5c3_Var2 string
+		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(`
+                    // Example of a simple bug
+                    function login() {
+                        if (user === 'admin' && pass === 'password') {
+                            return 'Welcome, admin!';
+                        } else {
+                            return 'Invalid credentials';
+                        }
+                    }
+                `)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `internal/templates/components/home.templ`, Line: 22, Col: 17}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</code></pre></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
